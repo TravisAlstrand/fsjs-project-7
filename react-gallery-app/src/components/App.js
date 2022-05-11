@@ -1,8 +1,16 @@
 import React from 'react';
 
+// components
+import Photo from './Photo';
+
 function App() {
   return (
-    <h2>Herro World</h2>
+    <div className='photo-container'>
+      <h2>Results</h2>
+      <ul>
+        <Photo />
+      </ul>
+    </div>
   );
 }
 
