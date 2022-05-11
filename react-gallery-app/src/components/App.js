@@ -2,7 +2,7 @@ import React from 'react';
 
 // components
 import Nav from './Nav';
-import Photo from './Photo';
+import PhotoContainer from './PhotoContainer';
 
 function App() {
   return (
@@ -13,10 +13,10 @@ function App() {
       <div className='photo-container'>
         <h2>Results</h2>
         <ul>
-          <Photo />
+          
         </ul>
       </div>
-      
+
     </div>
   );
 }
