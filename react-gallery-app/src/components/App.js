@@ -10,12 +10,7 @@ function App() {
 
       <Nav />
 
-      <div className='photo-container'>
-        <h2>Results</h2>
-        <ul>
-          
-        </ul>
-      </div>
+      <PhotoContainer />
 
     </div>
   );
