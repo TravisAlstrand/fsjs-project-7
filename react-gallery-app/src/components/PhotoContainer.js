@@ -10,7 +10,6 @@ const PhotoContainer = props => {
   let photos;
   // variable contaning props array of object from flickr
   const results = props.data;
-  console.log(results);
 
     // if array has items, map over array and create photo components for each
     if (results.length > 0) {

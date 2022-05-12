@@ -1,10 +1,11 @@
 import React, {Component} from 'react';
-import {BrowserRouter, Route, Switch} from 'react-router-dom';
+import {BrowserRouter, Switch, Route} from 'react-router-dom';
 
 // Components
 import SearchForm from './SearchForm';
 import Nav from './Nav';
 import PhotoContainer from './PhotoContainer';
+import NotFound from './NotFound';
 
 // Flickr API Key
 import config from '../config';
@@ -23,7 +24,7 @@ export default class App extends Component {
 
   // as soon as App is rendered, perform a default search for 'dogs'
   componentDidMount() {
-    this.handleSearch('dog');
+    this.handleSearch('wildlife');
   }
 
   // function to re-fetch data using user's search query
@@ -35,7 +36,6 @@ export default class App extends Component {
           photos: data.photos.photo,
           loading: false
         })
-        // console.log(this.state.photos);
       })
       .catch(err => {
         console.log('Error fetching data', err)
@@ -57,6 +57,13 @@ export default class App extends Component {
             ? <h3>Loading...</h3>
             : <PhotoContainer data={this.state.photos}/>
           }
+
+          {/* <Switch>
+            <Route exact path='/' component={} />
+            <Route path='/beaches' component={} />
+            <Route path='/sunset' component={} />
+            <Route component={NotFound} />
+          </Switch> */}
         </div>
       </BrowserRouter>
     );
