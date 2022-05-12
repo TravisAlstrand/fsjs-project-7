@@ -8,6 +8,7 @@ const PhotoContainer = props => {
 
   // variable to use in return method
   let photos;
+
   // variable contaning props array of object from flickr
   const results = props.data;
 
@@ -25,7 +26,7 @@ const PhotoContainer = props => {
 
     return (
       <div className='photo-container'>
-        <h2>Results</h2>
+        <h2>{props.query}</h2>
         <ul>
           {photos}
         </ul>

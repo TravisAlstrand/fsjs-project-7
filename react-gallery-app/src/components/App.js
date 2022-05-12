@@ -18,6 +18,7 @@ export default class App extends Component {
     this.state = {
       photos: [],
       apiKey: config,
+      searchQuery: '',
       loading: true
     };
   }
@@ -34,6 +35,7 @@ export default class App extends Component {
       .then(data => {
         this.setState({
           photos: data.photos.photo,
+          searchQuery: query,
           loading: false
         })
       })
@@ -55,13 +57,13 @@ export default class App extends Component {
           {
             (this.state.loading)
             ? <h3>Loading...</h3>
-            : <PhotoContainer data={this.state.photos}/>
+            : <PhotoContainer data={this.state.photos} query={this.state.searchQuery}/>
           }
-
-          {/* <Switch>
-            <Route exact path='/' component={} />
-            <Route path='/beaches' component={} />
-            <Route path='/sunset' component={} />
+{/* 
+          <Switch>
+            <Route exact path='/' render={() => <PhotoContainer data={this.state.photos} />} />
+            <Route path='/beaches' render={() => <PhotoContainer data={this.state.photos} />} />
+            <Route path='/sunset' render={() => <PhotoContainer data={this.state.photos} />} />
             <Route component={NotFound} />
           </Switch> */}
         </div>
