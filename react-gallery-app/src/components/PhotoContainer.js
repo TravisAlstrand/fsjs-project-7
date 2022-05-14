@@ -4,7 +4,7 @@ import React from 'react';
 import Photo from './Photo';
 import NotFound from './NotFound';
 
-const PhotoContainer = props => {
+const PhotoContainer = (props) => {
 
   // variable to use in return method
   let photos;

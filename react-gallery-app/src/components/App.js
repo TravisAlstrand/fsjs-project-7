@@ -17,21 +17,26 @@ export default class App extends Component {
     super();
     this.state = {
       photos: [],
+      wildlife: [],
+      beaches: [],
+      sunset: [],
       apiKey: config,
       searchQuery: '',
       loading: true
     };
   }
 
-  // as soon as App is rendered, perform a default search for 'wildlife'
+  // as soon as App is rendered, perform a default search for 3 nav options
   componentDidMount() {
+    this.handleSearch('beaches');
+    this.handleSearch('sunset');
     this.handleSearch('wildlife');
   }
 
   // function to fetch data using user's search query
   handleSearch = (query) => {
 
-    // set loading to true so it displays while fetching
+    // set loading to true so it displays while fetching if it was previously false
     this.setState({
       loading: true
     });
@@ -48,10 +53,28 @@ export default class App extends Component {
           searchQuery: query,
           loading: false
         })
+        // save array data for 3 nav options 
+        if (query === 'sunset') {
+          this.setState({
+            sunset: data.photos.photo
+          })
+        } else if (query === 'beaches') {
+          this.setState({
+            beaches: data.photos.photo
+          })
+        } else if (query === 'wildlife') {
+          this.setState({
+            wildlife: data.photos.photo
+          })
+        }
       })
       .catch(err => {
         console.log('Error fetching data', err)
       });
+  }
+
+  componentDidUpdate() {
+    console.log(this.state.sunset);
   }
 
   render() {
@@ -61,24 +84,24 @@ export default class App extends Component {
 
           <SearchForm onSearch={this.handleSearch} />
  
-          <Nav onSearch={this.handleSearch}/>
+          <Nav />
 
           <Switch>
             <Route exact path='/' render={() => <Redirect to='/wildlife' />} />
 
             <Route path='/wildlife' render={() => 
-                                          <PhotoContainer data={this.state.photos}
-                                          query={this.state.searchQuery} 
+                                          <PhotoContainer data={this.state.wildlife}
+                                          query={'wildlife'} 
                                           loading={this.state.loading} />} />
 
             <Route path='/beaches' render={() => 
-                                          <PhotoContainer data={this.state.photos}
-                                          query={this.state.searchQuery} 
+                                          <PhotoContainer data={this.state.beaches}
+                                          query={'beaches'} 
                                           loading={this.state.loading} />} />
 
             <Route path='/sunset' render={() => 
-                                          <PhotoContainer data={this.state.photos}
-                                          query={this.state.searchQuery} 
+                                          <PhotoContainer data={this.state.sunset}
+                                          query={'sunset'} 
                                           loading={this.state.loading} />} />
 
             <Route path='/search/:query' render={() => 
