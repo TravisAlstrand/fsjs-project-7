@@ -13,7 +13,6 @@ class SearchForm extends Component {
     this.setState({
       searchText: e.target.value
     });
-    console.log(this.state.searchText);
   }
 
   // prevent page refresh & call search method passing in search query

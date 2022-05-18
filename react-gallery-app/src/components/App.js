@@ -59,6 +59,31 @@ class App extends Component {
       });
   }
 
+  checkURL = () => {
+    // check if URL begins with '/search'
+    if (this.props.location.pathname.includes('/search/', 0)) {
+      // if it does, check if URL differs from stateQuery state
+      if (this.props.location.pathname.substring(8) !== this.state.searchQuery) {
+        // re-call handleSearch passing current pathname excluding '/search/'
+        this.handleSearch(this.props.location.pathname.substring(8));
+      }
+    } else { // if URL doesn't begin with '/search' repeat above accordingly
+      if (this.props.location.pathname.substring(1) !== this.state.searchQuery) {
+        // re-call handleSearch passing current pathname excluding '/'
+        this.handleSearch(this.props.location.pathname.substring(1));
+      }
+    }
+  }
+
+  // when page updates, check URL / searchQuery state
+  componentDidUpdate() {
+
+    // this.checkURL();
+
+    // console.log(this.state.searchQuery);
+    // console.log(this.props.location.pathname.substring(1));
+  }
+
   render() {
     return (
       <div className='container'>
