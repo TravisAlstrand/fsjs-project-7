@@ -59,29 +59,27 @@ class App extends Component {
       });
   }
 
-  checkURL = () => {
+  checkURL = (newQ) => {
     // check if URL begins with '/search'
-    if (this.props.location.pathname.includes('/search/', 0)) {
+    if (newQ.includes('/search/', 0)) {
       // if it does, check if URL differs from stateQuery state
-      if (this.props.location.pathname.substring(8) !== this.state.searchQuery) {
-        // re-call handleSearch passing current pathname excluding '/search/'
         this.handleSearch(this.props.location.pathname.substring(8));
-      }
     } else { // if URL doesn't begin with '/search' repeat above accordingly
-      if (this.props.location.pathname.substring(1) !== this.state.searchQuery) {
         // re-call handleSearch passing current pathname excluding '/'
         this.handleSearch(this.props.location.pathname.substring(1));
-      }
     }
   }
 
   // when page updates, check URL / searchQuery state
-  componentDidUpdate() {
+  componentDidUpdate(prevProps) {
 
-    // this.checkURL();
+    const newQuery = this.props.location.pathname;
+    const prevQuery = prevProps.location.pathname;
 
-    // console.log(this.state.searchQuery);
-    // console.log(this.props.location.pathname.substring(1));
+    // if the new url query is different from the previous one, run checkURL()
+    if (newQuery !== prevQuery) {
+      this.checkURL(newQuery);
+    }
   }
 
   render() {
