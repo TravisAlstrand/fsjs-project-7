@@ -10,3 +10,5 @@ Create your config.js file inside the 'src' folder and copy/paste the following.
   export default apiKey;
 
 ----------------------------------------------------------------------------------
+
+Added changes to background color and button colors.
